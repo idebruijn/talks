@@ -1,0 +1,35 @@
+How we did it: FitNesse / SoapUI / Jmeter
+Nadelen: slow / test not easy to maintain / collaboration not easy
+
+Speed of Go Test for unit tests! #IWantThat
+
+Lots of lines of code to write a test - we can do better!
+
+vb: old way
+
+New way:
+Setup Http Requests, send them and inspect Http Responses and verifying the response payload
+
+simple example:
+vb: boqs.GET
+
+Verifying response:
+The forest package offers several functions to inspect JSON and XML documents.
+All functions operate on the *http.Response and take the *testing.T for reporting errors.
+
+ExpectJSONDocument / JSONPath
+
+simple example with template:
+vb: boqs.POST
+
+
+But a failing test are not really easy to spot in the command line so we created: Dump and colored errors (go test -v)
+In contrast to the standard behavior, the Body of a http.Response is made re-readable. This means one can apply multiple expectations to a response as well as dump the full contents.
+
+example:
+
+Given-When-Then style: colorized logging
+
+example:
+
+ Abstractions with types and functions really helps to write a large collection of maintainable tests. And because of the speed of compilation and execution, we now run these API tests as frequently as we run the unit tests of our services.
