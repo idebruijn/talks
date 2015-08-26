@@ -1,0 +1,124 @@
+hi
+
+* verbose
+
+.code verbose_http.go
+
+* lean
+
+.code lean_http.txt
+
+* BDD style
+
+.code bdd_example.go /START OMIT/,/END OMIT/
+
+not part of forest
+
+* Build a HTTP request
+
+Based on the given contentType (xml,json,text), the payload is marshalled.
+
+- Content(myStruct, "application/json"")
+
+Others
+
+- Path("/v1/accounts/{a}/projects/{p}/versions/{v}", account_id, project_id, version)
+- Query("name", "this will be escaped")
+- Header("Content-Encoding","deflate")
+- Body("raw string")
+
+
+* Inspect HTTP response with XML
+
+.code sample.xml
+
+Using a struct
+
+	var doc Book
+	ExpectXMLDocument(t,r,&doc)
+
+Using a map
+
+	var doc map[string]interface{}
+	ExpectXMLDocument(t,r,&doc)
+
+Using a navigation path
+
+	chapters := XMLPath(t, r, "Book//Chapter")
+
+* Inspect HTTP response with JSON
+	
+.code sample.json
+
+Using a struct
+
+	var disk Disk
+	ExpectJSONDocument(t,r,&disk)
+
+Using a map
+	
+	ExpectJSONHash(t,r,func(hash map[string]interface{}){
+		...
+	})
+
+Using a navigation path
+
+	name := JSONPath(t, r, ".Volumes.2.Name")	
+	
+* Other inspection methdods
+
+- ExpectJSONArray
+- ExpectStatus
+- ExpectHeader
+	
+	
+* testing a testing package
+
+Define the interface for what your are mocking.
+
+.code testing.go  /START OMIT/,/END OMIT/
+
+* mock it
+
+.code mocked_testing.go /START OMIT/,/END OMIT/
+
+* testing against a testing service
+
+Setup and run a local HTTP server
+
+.code testable_server.go /START OMIT/,/END OMIT/
+
+* testing an expectation
+
+.code test_expectStatus.go
+
+* testing the logging output
+
+.code test_logging.go
+
+* supporting setup and teardown
+
+	func TestMain(m *testing.M) {
+			// do your setup
+			
+			exitCode := m.Run()
+			
+			// do your teardown
+			
+			os.Exit(exitCode)		
+	}
+
+Inside TestMain there is no *testing.T
+
+	func TestMain(m *testing.M) {		
+		
+		// prepare the resources under test
+		
+		t := forest.TestingT
+		r := yourApi.POST(t, ...)
+		ExpectStatus(t, r, 204)
+		
+		// run all tests 
+				
+		os.Exit(m.Run())
+	}		

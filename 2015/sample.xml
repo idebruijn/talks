@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<Book title="Learning Go the hard way">
+	<Chapter title="Foreword"></Child>
+	<Chapter title="Introduction"></Child>					
+</Root>
