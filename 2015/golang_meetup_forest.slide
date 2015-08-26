@@ -1,3 +1,10 @@
+How we tet....
+
+Ivo de Bruijn
+Ernest Micklei
+
+* Being
+
 How we did it: FitNesse / SoapUI / Jmeter
 Nadelen: slow / test not easy to maintain / collaboration not easy
 
@@ -33,3 +40,15 @@ Given-When-Then style: colorized logging
 example:
 
  Abstractions with types and functions really helps to write a large collection of maintainable tests. And because of the speed of compilation and execution, we now run these API tests as frequently as we run the unit tests of our services.
+
+* forest
+
+.image img/forest.jpeg
+
+* Plain
+
+.code plain_http.go
+
+* Verbose
+
+.code verbose_http.go
