@@ -52,3 +52,7 @@ example:
 * Verbose
 
 .code verbose_http.go
+
+* BDD
+
+.code bdd_example.go  /START OMIT/,/END OMIT/
