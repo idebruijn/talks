@@ -1,13 +1,5 @@
 hi
 
-* verbose
-
-.code verbose_http.go
-
-* lean
-
-.code lean_http.txt
-
 all errors are reported to a *testing.T*
 
 * Prepare a HTTP request

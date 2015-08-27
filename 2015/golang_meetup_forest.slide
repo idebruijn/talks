@@ -1,21 +1,30 @@
-How we tet....
+How we test a REST api using Forest
 
 Ivo de Bruijn
 Ernest Micklei
 
-* Being
+* Tools we used before
+.image img/fitnesse.jpg
+.image img/jmeter.png
+.image img/soapui.png
 
-How we did it: FitNesse / SoapUI / Jmeter
-Nadelen: slow / test not easy to maintain / collaboration not easy
+* Speed, maintainability, readability
 
-Speed of Go Test for unit tests! #IWantThat
++ Speed of "go test" for unit tests! (I wanted that)
 
-Lots of lines of code to write a test - we can do better!
+- Lots of lines of code to write a test - we can do better!
 
-vb: old way
 
-New way:
-Setup Http Requests, send them and inspect Http Responses and verifying the response payload
+* verbose
+
+.code verbose_http.go
+
+*  Setup Http Requests, send them and inspect Http Responses and verifying the response payload
+
+ lean
+
+.code lean_http.txt
+
 
 simple example:
 vb: boqs.GET
@@ -47,7 +56,7 @@ example:
 
 * Plain
 
-.code plain_http.go
+#.code plain_http.go
 
 * Verbose
 

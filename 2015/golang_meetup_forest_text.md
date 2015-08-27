@@ -1,21 +1,25 @@
 Welkom everybody...
 
-Today we want to talk to you about Forest and how an why we created this package for testing API's.
+Today we want to talk to you about Forest and how an why we created this package for testing REST based Webservices.
 Forest is a package with a few simple helpers which help you creating functional tests that call a REST based Webservice.
 
 So why did we start making this?
 
-I have been testing other services at bol.com and other companies and here I used different tools like FitNesse, SOAPUI, Jmeter. But all these tests didn't provide me the thinks I wanted. FitNesse was to slow, not easy to refactor and error handeling wasn't any good. SOAPUI was fast but creating and maintaining in the GUI wasn't what I liked and you couldn't really word together on test because the tests are in one huge file. Same things apply for Jmeter. I saw Ernest using 'go test' for his unit tests and they where so fast I wanted that to but I didn't know well how to program or Go. During a hackathon at bol.com I started writing my first tests.
+# Tools we used
+I have been testing other services at bol.com and other companies and here I used different tools like FitNesse, SOAPUI, Jmeter. But all these tests didn't provide me the thinks I wanted. FitNesse was to slow, not easy to refactor and error handeling wasn't any good. SOAPUI was fast but creating and maintaining in the GUI wasn't what I liked and you couldn't really word together on test because the tests are in one huge file. Same things apply for Jmeter. 
+
+#speed
+I saw Ernest using 'go test' for his unit tests and they where so fast I wanted that to but I didn't know well how to program or Go. During a hackathon at bol.com I started writing my first tests.
 
 The Go standard library has all you need to write these test, but you needed to write but the required amount of code, especially the error handling, makes tests harder to read and longer to write. And for me it was hard at first. 
 
 Example: verbose
 
-I should be easier to Setup Http Requests, send them and inspect Http Responses and verifying the response payload and a few lines. So Ernest started to write some helpers which made my tests more lean, easier to write and maintain.
+It should be easier to Setup Http Requests, send them and inspect Http Responses and verifying the response payload and a few lines. So Ernest started to write some helpers which made my tests more lean, easier to write and maintain.
 
 Example: lean
 
-Verifying the response is always the most importan part of the test because it wil vallidate if it is correct or not.
+Verifying the response is always the most important part of the test because it wil vallidate if it is correct or not.
 The forest package offers several functions to inspect JSON and XML documents.
 All functions operate on the *http.Response and take the *testing.T for reporting errors.
 
@@ -31,4 +35,4 @@ I did mis some human readable logging when I was reading my tests in the termina
 
 Example: terminal
 
-Do I like writing these tests now? I do! We have created a large collection of fast, maintainable and readable tests and because of the speed of compilation and execution, we now run these API tests as frequently as we run the unit tests of our services.
+I do like writing these tests now! We have created a large collection of fast, maintainable and readable tests and because of the speed of compilation and execution, we now run these API tests as frequently as we run the unit tests of our services. Which is really important now that we are going more and more to continues delivery.
