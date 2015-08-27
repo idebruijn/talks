@@ -24,7 +24,6 @@ func Test_create_topic(t *testing.T) {
 	topicName := "golang"
 
 	//create topic
-	boqs.GET(t, withBoqsConfig("v1/topics"))
 	r := boqs.PUT(t, withBoqsConfig(fmt.Sprintf("/v1/topics/%s", topicName))) // HL
 
 	//expect status no content
