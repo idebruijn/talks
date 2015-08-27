@@ -185,3 +185,11 @@ inside TestMain there is no *testing.T
 		}
 		os.Exit(1)
 	}		
+
+* Where can you start?
+
+*forest*
+https://github.com/emicklei/forest
+
+*given-when-then-logging*
+https://github.com/idebruijn/given-when-then-style
