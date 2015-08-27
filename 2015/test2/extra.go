@@ -1,3 +1,4 @@
+package main
 
 //func Test_create_topic_with_a_name_greater_then_255_characters(t *testing.T) {
 //	//setup

@@ -11,7 +11,7 @@ import (
 // START OMIT
 
 //suite setup
-var boqs = forest.NewClient(("http://localhost:8060"), new(http.Client))
+var boqs = forest.NewClient("http://localhost:9999", new(http.Client))
 
 func withBoqsConfig(staticPath string) *forest.RequestConfig {
 	return forest.NewConfig(staticPath).
@@ -24,6 +24,7 @@ func Test_create_topic(t *testing.T) {
 	topicName := "golang"
 
 	//create topic
+	boqs.GET(t, withBoqsConfig("v1/topics"))
 	r := boqs.PUT(t, withBoqsConfig(fmt.Sprintf("/v1/topics/%s", topicName))) // HL
 
 	//expect status no content

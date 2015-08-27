@@ -8,18 +8,8 @@ import (
 	"github.com/emicklei/forest"
 )
 
-//// flag variables
-//var server = flag.String("server", "localhost", "the server against which the tests are run")
-//var port = flag.String("port", "49011", "the port against which the tests are run")
-//var boqs *forest.APITesting
-
-//func init() {
-//	flag.Parse()
-//	boqs = forest.NewClient(fmt.Sprintf("http://%s:%s", *server, *port), new(http.Client))
-//}
-
 //suite setup
-var boqs = forest.NewClient(("http://localhost:8060"), new(http.Client))
+var boqs = forest.NewClient("http://localhost:9999", new(http.Client))
 
 //default headers
 func withBoqsConfig(staticPath string) *forest.RequestConfig {
