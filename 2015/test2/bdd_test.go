@@ -28,7 +28,7 @@ func Test_create_topic_with_a_name_greater_then_255_characters(t *testing.T) {
 	r := boqs.PUT(t, withBoqsConfig(fmt.Sprintf("/v1/topics/%s", nameWith256Characters)))
 
 	Then(t, "I expect the correct error code and status")
-	forest.ExpectStatus(t, r, http.StatusOK)
+	forest.ExpectStatus(t, r, http.StatusBadRequest)
 	ExpectErrorCode(t, r, 3016)
 }
 
