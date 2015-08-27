@@ -1,7 +1,5 @@
 hi
 
-all errors are reported to a *testing.T*
-
 * Prepare a HTTP request
 
 	cfg := NewConfig("/v1/accounts/{a}/projects/{p}", account_id, project_id)
@@ -83,31 +81,31 @@ Using a navigation path
 	Dump(t,r)
 	
 	
-* testing a testing package
+* Testing a testing package
 
 Define the interface for what your are mocking.
 
 .code testing.go  /START OMIT/,/END OMIT/
 
-* mock it
+* Mock it
 
 .code mocked_testing.go /START OMIT/,/END OMIT/
 
-* testing against a testing service
+* Testing against a testing service
 
 Setup and run a local HTTP server
 
 .code testable_server.go /START OMIT/,/END OMIT/
 
-* testing an expectation
+* Testing an expectation
 
 .code test_expectStatus.go
 
-* testing the logging output
+* Testing the logging output
 
 .code test_logging.go
 
-* supporting setup and teardown
+* Supporting setup and teardown
 
 	func TestMain(m *testing.M) {
 			// do your setup
@@ -119,7 +117,9 @@ Setup and run a local HTTP server
 			os.Exit(exitCode)		
 	}
 
-Inside TestMain there is no *testing.T
+* Using the api for setup
+
+inside TestMain there is no *testing.T
 
 	func TestMain(m *testing.M) {		
 		
@@ -127,16 +127,8 @@ Inside TestMain there is no *testing.T
 		
 		t := forest.TestingT
 		r := yourApi.POST(t, ...)
-		ExpectStatus(t, r, 204)
-		
-		// run all tests 
-				
-		os.Exit(m.Run())
+		if ExpectStatus(t, r, 204) {
+			m.Run()	
+		}
+		os.Exit(1)
 	}		
-	
-	
-* BDD style
-
-.code bdd_example.go /START OMIT/,/END OMIT/
-
-not part of forest	
