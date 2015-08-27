@@ -17,7 +17,8 @@ body, err := ioutil.ReadAll(resp.Body)
 if err != nil {
 	log.Fatal("failed to read response:%v",err)
 }
-if len(body) == 0 { return }
-var serviceError ServiceError
-err = json.Unmarshal(body, &serviceError )
+if resp.StatusCode != http.StatusOK {
+	var serviceError ServiceError
+	err = json.Unmarshal(body, &serviceError )
+}
 ...

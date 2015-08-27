@@ -8,11 +8,7 @@ hi
 
 .code lean_http.txt
 
-* BDD style
-
-.code bdd_example.go /START OMIT/,/END OMIT/
-
-not part of forest
+all errors are reported to a *testing.T*
 
 * Build a HTTP request
 
@@ -122,3 +118,10 @@ Inside TestMain there is no *testing.T
 				
 		os.Exit(m.Run())
 	}		
+	
+	
+* BDD style
+
+.code bdd_example.go /START OMIT/,/END OMIT/
+
+not part of forest	
