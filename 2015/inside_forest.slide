@@ -10,19 +10,38 @@ hi
 
 all errors are reported to a *testing.T*
 
-* Build a HTTP request
+* Prepare a HTTP request
+
+	cfg := NewConfig("/v1/accounts/{a}/projects/{p}", account_id, project_id)
 
 Based on the given contentType (xml,json,text), the payload is marshalled.
 
-- Content(myStruct, "application/json"")
+	cfg.Content(myStruct, "application/json"")
 
 Others
 
-- Path("/v1/accounts/{a}/projects/{p}/versions/{v}", account_id, project_id, version)
-- Query("name", "this will be escaped")
-- Header("Content-Encoding","deflate")
-- Body("raw string")
+	cfg.Query("name", "this will be escaped")
+	cfg.Header("Content-Encoding","deflate")
+	cfg.Body("raw string")
+	cfg.BodyReader = fileReader
 
+* Send the HTTP request
+	
+Package variable for 	
+	
+	var myAPI = NewClient("https://localhost:8080", new(http.Client))
+	
+	
+Send and receive
+
+	r := myAPI.GET(t, cfg.Build())	
+	
+Now we have
+
+- *myAPI* *forest.APITesting
+- *t*  *testing.T
+- *r*  *http.Response
+	
 
 * Inspect HTTP response with XML
 
@@ -63,9 +82,13 @@ Using a navigation path
 	
 * Other inspection methdods
 
-- ExpectJSONArray
-- ExpectStatus
-- ExpectHeader
+	ExpectJSONArray(t,r, func(array []interface{}){...})
+
+	ExpectStatus(t,r, http.StatusNotFound)
+
+	ExpectHeader(t,r, "Accept-Encoding", "gzip")
+
+	Dump(t,r)
 	
 	
 * testing a testing package
