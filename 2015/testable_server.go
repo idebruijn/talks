@@ -4,7 +4,7 @@ var tsAPI *APITesting
 
 func main(){
 	
-// START OMIT	
+// START OMIT
 	
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if strings.HasSuffix(r.URL.Path, "404") {
@@ -17,7 +17,8 @@ func main(){
 			return
 		}
 	}
-	tsAPI = NewClient(ts.URL, new(http.Client))
 	
-// END OMIT	
+	tsAPI = NewClient(ts.URL, new(http.Client)) // HL
+	
+// END OMIT
 }	
