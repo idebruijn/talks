@@ -3,65 +3,49 @@ How we test a REST api using Forest
 Ivo de Bruijn
 Ernest Micklei
 
-* Tools we used before
+* Tools I used before
 .image img/fitnesse.jpg
 .image img/jmeter.png
 .image img/soapui.png
 
-* Speed, maintainability, readability
+* First test written in Go
 
-+ Speed of "go test" for unit tests! (I wanted that)
+- Speed of "go test" was great
 
-- Lots of lines of code to write a test - we can do better!
+- Required amount of code, especially the error handling, makes writing tests hard
+
+- Tests where not human readable 
+
+- We can make it easier!
 
 
-* verbose
+* Boilerplate
 
 .code verbose_http.go
 
-*  Setup Http Requests, send them and inspect Http Responses and verifying the response payload
-
- lean
+* Lean test with forest
+Setup Http Requests, send them and inspect Http Responses
 
 .code lean_http.txt
 
+* Real testcase - demo
 
-simple example:
-vb: boqs.GET
-
-Verifying response:
-The forest package offers several functions to inspect JSON and XML documents.
-All functions operate on the *http.Response and take the *testing.T for reporting errors.
-
-ExpectJSONDocument / JSONPath
-
-simple example with template:
-vb: boqs.POST
+.code test1/dump_err_example_test.go /START OMIT/,/END OMIT/
 
 
-But a failing test are not really easy to spot in the command line so we created: Dump and colored errors (go test -v)
-In contrast to the standard behavior, the Body of a http.Response is made re-readable. This means one can apply multiple expectations to a response as well as dump the full contents.
+* Verifying the response payload
+The *forest* package offers several functions to inspect JSON and XML messages.
 
-example:
+.code inspect_payload.go /START OMIT/,/END OMIT/
 
-Given-When-Then style: colorized logging
+* Analyse failing tests
 
-example:
+When you have failed tests you want to see *what* went wrong an *why* fast.
 
- Abstractions with types and functions really helps to write a large collection of maintainable tests. And because of the speed of compilation and execution, we now run these API tests as frequently as we run the unit tests of our services.
+- Colorized errors
+- Dump *http.Response on error
 
-* forest
 
-.image img/forest.jpeg
+* Given-When-Then style: colorized logging
 
-* Plain
-
-#.code plain_http.go
-
-* Verbose
-
-.code verbose_http.go
-
-* BDD
-
-.code bdd_example.go  /START OMIT/,/END OMIT/
+.code bdd_example.go /START OMIT/,/END OMIT/
